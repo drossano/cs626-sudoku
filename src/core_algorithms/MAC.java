@@ -78,7 +78,14 @@ public abstract class MAC<X, V> {
      *
      */
     public boolean AC3(Queue<Arc<X>> arcs){
+        do {
+            Arc<X> currentArc = arcs.remove();
 
+            if (revise(currentArc.tail(), currentArc.head()) == true) {
+                
+            }
+        } while (arcs.size() > 0);
+        return true;
     }
 
 

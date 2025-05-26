@@ -81,9 +81,22 @@ public abstract class MAC<X, V> {
         do {
             Arc<X> currentArc = arcs.remove();
 
-            if (revise(currentArc.tail(), currentArc.head()) == true) {
-                
+
+            if (revise(currentArc.tail, currentArc.head) == true) {
+            if (getAllVariables().get(currentArc.tail).size() == 0){
+                return false;
             }
+            else {
+                List<X> neighbors = problem.getNeighborsOf(currentArc.tail);
+                neighbors.remove(currentArc.head);
+
+                for (X neighbor : neighbors) {
+                    Arc<X> newArc =new Arc<> (neighbor, currentArc.tail);
+                    arcs.add(newArc);
+                }
+            }
+                    }
+            
         } while (arcs.size() > 0);
         return true;
     }
@@ -202,6 +215,18 @@ public abstract class MAC<X, V> {
      * - If all variables are already assigned, return null.
      */
     public X selectUnassigned(){
+        X smallestVar = null;
+        for (X variable : allVariables.keySet()) {
+
+            if (assigned(variable) == false) {
+                if (smallestVar == null) {
+                    smallestVar = variable;
+                } else if (allVariables.get(variable).size() <= allVariables.get(smallestVar).size() ) {
+                    smallestVar = variable;
+                }
+            }
+        }
+        return smallestVar;
 
     }
 

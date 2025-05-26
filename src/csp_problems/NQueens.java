@@ -6,7 +6,8 @@ import java.util.stream.IntStream;
 public class NQueens implements CSPProblem<Integer,Integer>{
     private final int N;
     private final List<Integer> DEFAULT_DOMAIN;
-
+    //Each Var reps a column on the board
+    //Domain if each var is list of row positons that a queen may be placedd
     public NQueens(int n){
         this.N = n;
         DEFAULT_DOMAIN = IntStream.rangeClosed(1, N)

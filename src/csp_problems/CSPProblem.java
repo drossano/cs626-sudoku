@@ -13,7 +13,10 @@ import java.util.Map;
  *  *     (e.g., for Sudoku, a value is an integer between 1 and 9.)
  */
 public interface CSPProblem<X,V> {
-
+    /**
+     * Returns map where keys are variables & values are lists representing current domains
+     * Keeps track of which vars exist in problem and what valuees are still legal for each one
+     */
     Map<X, List<V>> getAllVariables();
 
     /**
